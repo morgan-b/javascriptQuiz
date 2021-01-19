@@ -6,7 +6,6 @@ let counterEl = document.getElementById('counter');
 let questionEL = document.getElementById('question');
 let choicesEl = document.getElementById('choices');
 let submitScore = document.getElementById('submitScore');
-let answerChoices = document.getElementsByClassName('choice');
 let answerSelected = document.querySelectorAll(".choice");
 let highScoresPage = document.getElementById("Highscores");
 let highScoresButton = document.getElementById("highscorebutton");
@@ -90,7 +89,6 @@ startButton.addEventListener("click", function () {
   //startTimer();
   createQuestions();
   timer = setInterval(startTimer, 1000);
-
 });
 
 
@@ -105,22 +103,18 @@ function startTimer() {
     highScoresTracker.push(timeleft);
     clearInterval(timer);
     showResults();
-
-
   }
 }
 
 // create the questions with answers
 function createQuestions() {
 
-
   let q = questionArray[questionNumber];
-  console.log(q);
   questionEL.innerHTML = "<p>" + q.question + "</p>";
-  answerChoices[0].innerHTML = q.answers[0];
-  answerChoices[1].innerHTML = q.answers[1];
-  answerChoices[2].innerHTML = q.answers[2];
-  answerChoices[3].innerHTML = q.answers[3];
+  answerSelected[0].innerHTML = q.answers[0];
+  answerSelected[1].innerHTML = q.answers[1];
+  answerSelected[2].innerHTML = q.answers[2];
+  answerSelected[3].innerHTML = q.answers[3];
 
 }
 
@@ -149,9 +143,8 @@ function checkAnswers(buttonID) {
     wrongCount++;
     timeleft = timeleft - 10;
     alert("Wrong answer. You lost 10 seconds!");
-
-
   }
+
   questionNumberCheck();
 }
 
@@ -168,40 +161,30 @@ function questionNumberCheck() {
   else {
     counterEl.hidden = true;
     highScoresTracker.push(timeleft);
-
+    clearInterval(timer);
     showResults();
-
   }
 }
 
-
-
 //show results of the round and add to the round count 
 function showResults() {
-
   choicesEl.hidden = true;
   resultsContainer.hidden = false;
   playAgainButton.hidden = false;
   roundNumber++;
   scoreResults.innerHTMl = "";
   scoreResults.innerHTML = "You got " + correctCount + " correct out of " + questionArray.length + "<br>" + "Your final score is:  " + timeleft;
-  console.log(resultsContainer);
-
-
-
 }
+
 // if a user clicks the submit score button, add the initials they wrote and the score of that round to initial trackers
 submitScore.addEventListener("click", function () {
   initialsTracker.push(document.querySelector(".initials").value + " " + highScoresTracker[(highScoresTracker.length) - 1]);
-  console.log(highScoresTracker);
-  console.log(initialsTracker);
   alert("submitted!");
 });
 
 
 //if a user clicks the highscore button, display high scores and hide other cards
 highScoresButton.addEventListener("click", function () {
-  console.log(highScoresTracker);
   highScoresPage.hidden = false;
   playAgainButton.hidden = false;
   choicesEl.hidden = true;
@@ -209,17 +192,12 @@ highScoresButton.addEventListener("click", function () {
   quizContainer.hidden = true;
   //initialsTracker.forEach(element => highScoreRow.innerHTML = ("<br>" + element));
   highScoreRow.innerHTML = initialsTracker;
-
-
-}
-);
+});
 
 
 /*if a user clicks the play again button, set timer to 75, set correct and wrong count and question
 to 0, and start timer and questions*/
-
 playAgainButton.addEventListener("click", function () {
-  clearInterval(timer);
   timeleft = 75;
   correctCount = 0;
   wrongCount = 0;
