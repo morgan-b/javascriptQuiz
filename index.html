@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Password Generator</title>
+    <link rel="stylesheet" href="./stylesheet.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="nav-link" id="highscorebutton">View Highscores</div>
+            <div class="nav-link" id="timer">
+                <div id="counter"></div>
+         
+            </div>
+        </div>
+    </nav>
+
+    <div id="quiz" class="card">
+        <div class="card-body">
+            <h1 class="card-title">Coding Quiz Challenge</h1>
+            <p class="card-text"> Try to answer the following code-related questions within the time limit. Keep in mind
+                that incorrect answers penalize your time by 10 seconds</p>
+            <button type="button" id="start" class="btn btn-primary"> Start Quiz</button>
+        </div>
+    </div>
+
+    <div id="choices" class="card">
+        <h1 class="card-title" id="question"></h1>
+
+
+        <button type="button" class="choice" id="A"></button>
+
+        <button type="button" class="choice" id="B"></button>
+
+        <button type="button" class="choice" id="C"></button>
+
+        <button type="button" class="choice" id="D"></button>
+
+
+
+    </div>
+
+    <div id="results" class="card">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control initials" placeholder="Your initials" aria-label="Default"
+                aria-describedby="basic-addon2">
+            <div class="input-group-append">
+                <button id="submitScore" class="btn btn-outline-secondary" type="button">Submit Score</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="Highscores" class="card">
+        
+
+        <h1>Highscores</h1>
+        
+        <p class=highScorestext> 
+            Scores
+
+        </p>
+
+    </div>
+
+
+    <button id="playAgain" class="btn btn-outline-secondary" type="button">Play Again</button>
+    <script src="./script.js"></script>
+</body>
+
+</html>

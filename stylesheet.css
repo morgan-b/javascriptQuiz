@@ -1,0 +1,33 @@
+body{
+	font-size: 20px;
+	font-family: sans-serif;
+	color: #333;
+	text-align: center;
+	
+}
+#submit:hover{
+	background-color: #3a8;
+}
+
+.choices {
+	position: relative;
+}
+
+#timer {
+	position: absolute;
+	top: 8px;
+	right: 16px;
+	font-size: 16px;
+  }
+
+.choice {
+background-color:purple;
+margin: 5px;
+align-self: center;
+border-color: purple;
+color: white;
+}
+ nav {
+	margin-bottom:5px;
+ }
+
