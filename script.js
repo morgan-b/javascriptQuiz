@@ -55,16 +55,10 @@ headerCreate.append("Game Over!");
 //Define number of last question to stop each round
 const lastQuestion = (questionArray.length - 1);
 
-// Set the question number at 0 so the game will start at first in the array
+// Set the question number, round number, correct and wrong answers to 0 
 let questionNumber = 0;
-
-// Set the round number at 0 so the game will start at first round
 let roundNumber = 0;
-
-// Set the number of correct answers to 0 
 let correctCount = 0;
-
-// Set the number of wrong answers to 0 
 let wrongCount = 0;
 
 // Set the game to start at 75 seconds
@@ -75,6 +69,10 @@ let highScoresTracker = [];
 
 // track the initials and score submitted on results page to be displayed in high scores
 let initialsTracker = [];
+
+// create variable to control timer
+let timer;
+
 
 
 
@@ -89,31 +87,27 @@ playAgainButton.hidden = true;
 startButton.addEventListener("click", function () {
   quizContainer.hidden = true;
   choicesEl.hidden = false;
-  startTimer();
+  //startTimer();
   createQuestions();
+  timer = setInterval(startTimer, 1000);
 
 });
 
 
 // the timer function
 function startTimer() {
+  counterEl.innerHTML = "Time: " + timeleft;
+  timeleft -= 1;
+
+  // end game if time left hits zero
+  if (timeleft <= 0) {
+    counterEl.hidden = true;
+    highScoresTracker.push(timeleft);
+    clearInterval(timer);
+    showResults();
 
 
-  let quizTimer = setInterval(function () {
-    counterEl.innerHTML = "Time: " + timeleft;
-    timeleft -= 1;
-    
-    // end game if time left hits zero
-    if (timeleft <= 0) {
-      highScoresTracker.push(timeleft);
-      showResults();
-      // return;
-    }
-  }, 1000);
-  
-    // clear interval after each round
-  if (roundNumber > 0) { clearInterval(quizTimer); }
-
+  }
 }
 
 // create the questions with answers
@@ -132,7 +126,7 @@ function createQuestions() {
 
 
 // create the event listeners for the answers and pass id of the answer selected to check if correct
-answerSelected.forEach(function(i) {
+answerSelected.forEach(function (i) {
   i.addEventListener('click', function () {
     let buttonID = i.id;
     checkAnswers(buttonID);
@@ -174,6 +168,7 @@ function questionNumberCheck() {
   else {
     counterEl.hidden = true;
     highScoresTracker.push(timeleft);
+
     showResults();
 
   }
@@ -183,6 +178,7 @@ function questionNumberCheck() {
 
 //show results of the round and add to the round count 
 function showResults() {
+
   choicesEl.hidden = true;
   resultsContainer.hidden = false;
   playAgainButton.hidden = false;
@@ -223,20 +219,20 @@ highScoresButton.addEventListener("click", function () {
 to 0, and start timer and questions*/
 
 playAgainButton.addEventListener("click", function () {
+  clearInterval(timer);
   timeleft = 75;
   correctCount = 0;
   wrongCount = 0;
   questionNumber = 0;
+  //set screen to show questions and hide other elements for new game
   quizContainer.hidden = true;
   choicesEl.hidden = false;
   resultsContainer.hidden = true;
   highScoresPage.hidden = true;
   playAgainButton.hidden = true;
   counterEl.hidden = false;
-
-  console.log(timeleft);
-  startTimer();
-  createQuestions();
+  //start timer
+  timer = setInterval(startTimer, 1000);
 
 });
 
