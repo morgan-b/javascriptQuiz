@@ -4,7 +4,7 @@
 
 This application is built to be a timed coding quiz with multiple choice questions.  This app runs in the browser and features dynamically updated HTML and CSS powered by JavaScript code. The application was requested to be responsive and have a clean and polished UI.
 
-To view the active application see here: ![Code Quiz](https://morgan-b.github.io/javascriptQuiz/)
+To view the active application see here: [Code Quiz](https://morgan-b.github.io/javascriptQuiz/)
 
 ## Requirements
 
