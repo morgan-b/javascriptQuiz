@@ -31,7 +31,7 @@ let questionArray = [{
   correctAnswer: 'D',
 }, {
 
-  question: 'String values must be enclosed within ___ when being assigned to letiables',
+  question: 'String values must be enclosed within ___ when being assigned to variables',
   answers: ['commas', 'curly brackets', 'quotes', 'parenthesis'],
   correctAnswer: 'C',
 },
