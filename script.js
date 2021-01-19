@@ -39,7 +39,7 @@ let questionArray = [{
 {
   question: 'A very useful tool used during development and debugging for printint content to the debugger is:',
   answers: ['Javascript', 'terminal / bas', 'for loops', 'console log'],
-  correctAnswer: 'C',
+  correctAnswer: 'D',
 }];
 
 // create elements for results page that displays after each round
@@ -49,6 +49,9 @@ resultsContainer.prepend(scoreResults);
 resultsContainer.prepend(headerCreate);
 headerCreate.append("Game Over!");
 
+// create list of high scores
+var list = document.createElement("ul");
+highScoreRow.append(list);
 
 
 //Define number of last question to stop each round
@@ -80,6 +83,8 @@ choicesEl.hidden = true;
 resultsContainer.hidden = true;
 highScoresPage.hidden = true;
 playAgainButton.hidden = true;
+
+
 
 
 // the timer and questions start when start button is clicked 
@@ -180,7 +185,9 @@ function showResults() {
 submitScore.addEventListener("click", function () {
   initialsTracker.push(document.querySelector(".initials").value + " " + highScoresTracker[(highScoresTracker.length) - 1]);
   alert("submitted!");
+  createlist();
 });
+
 
 
 //if a user clicks the highscore button, display high scores and hide other cards
@@ -190,14 +197,25 @@ highScoresButton.addEventListener("click", function () {
   choicesEl.hidden = true;
   resultsContainer.hidden = true;
   quizContainer.hidden = true;
-  //initialsTracker.forEach(element => highScoreRow.innerHTML = ("<br>" + element));
-  highScoreRow.innerHTML = initialsTracker;
+ 
 });
 
+
+
+function createlist() {
+  
+  var li = document.createElement('li');
+  initialsTracker.forEach(function (i) {
+    
+    li.textContent = i;
+  });
+  list.append(li);
+}
 
 /*if a user clicks the play again button, set timer to 75, set correct and wrong count and question
 to 0, and start timer and questions*/
 playAgainButton.addEventListener("click", function () {
+  clearInterval(timer);
   timeleft = 75;
   correctCount = 0;
   wrongCount = 0;
@@ -211,6 +229,7 @@ playAgainButton.addEventListener("click", function () {
   counterEl.hidden = false;
   //start timer
   timer = setInterval(startTimer, 1000);
+  createQuestions();
 
 });
 
