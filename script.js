@@ -52,9 +52,14 @@ headerCreate.append("Game Over!");
 // create list of high scores
 var list = document.createElement("ul");
 highScoreRow.append(list);
+
+//create high scores button
 var clearScores = document.createElement("button");
 clearScores.innerHTML = "Clear Scores"
+clearScores.classList.add("btn");
+clearScores.classList.add("btn-outline-secondary");
 highScoreRow.append(clearScores);
+
 
 
 
