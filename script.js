@@ -52,6 +52,10 @@ headerCreate.append("Game Over!");
 // create list of high scores
 var list = document.createElement("ul");
 highScoreRow.append(list);
+var clearScores = document.createElement("button");
+clearScores.innerHTML = "Clear Scores"
+highScoreRow.append(clearScores);
+
 
 
 //Define number of last question to stop each round
@@ -189,6 +193,12 @@ submitScore.addEventListener("click", function () {
 });
 
 
+// if a user clicks the clear score button, clear the list html and reset the intial tracker
+clearScores.addEventListener("click", function () { 
+  initialsTracker = []; 
+  list.innerHTML = "";
+  console.log(initialsTracker);})
+
 
 //if a user clicks the highscore button, display high scores and hide other cards
 highScoresButton.addEventListener("click", function () {
@@ -210,6 +220,7 @@ function createlist() {
     li.textContent = i;
   });
   list.append(li);
+  
 }
 
 /*if a user clicks the play again button, set timer to 75, set correct and wrong count and question
